@@ -1,15 +1,26 @@
 import React from "react";
+import { POSITIVE_SOUND_ID, NEGATIVE_SOUND_ID } from "./SoundsContainer";
 
 interface WithSoundProps {
     soundType: "positive" | "negative";
 }
 
-// todo: implement HOC such way, that sound is played on wrapped component click
-// you can play sounds from SoundsContainer by getting those sounds by id or through the context - your choice
-export function withSound<P extends WithSoundProps>(Component: React.FC<P>): React.FC<P> {
-    const ButtonWithSound: React.FC<P> = ({ soundType, ...props }) => {
-        return <Component {...props as P} />;
-    };
+export function withSound<P extends object>(
+    Component: React.FC<P & WithSoundProps>
+): React.FC<P & WithSoundProps> {
+    return function WrappedComponent({ soundType, ...props }) {
+        const handleClick = (event: React.MouseEvent) => {
+            const soundId = soundType === "positive" ? POSITIVE_SOUND_ID : NEGATIVE_SOUND_ID;
+            const audio = document.getElementById(soundId) as HTMLAudioElement;
+            if (audio) {
+                audio.currentTime = 0; // Restart the sound if already playing
+                audio.play();
+            }
+            if (props && (props as any).onClick) {
+                (props as any).onClick(event);
+            }
+        };
 
-    return ButtonWithSound;
+        return <Component {...(props as P)} onClick={handleClick} />;
+    };
 }

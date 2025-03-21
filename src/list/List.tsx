@@ -1,10 +1,16 @@
 import React from "react";
 import { ListItem } from "./ListItem";
+import { Note } from "../types";
 
 import "./List.css";
 import { TranslateText } from "../lang/TranslateText";
 
-export const List: React.FC = () => {
+interface ListProps {
+    notes: Note[];
+    setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+}
+
+export const List: React.FC<ListProps> = ({ notes, setNotes }) => {
     return (
         <table className="list">
             <thead>
@@ -17,7 +23,9 @@ export const List: React.FC = () => {
                 </tr>
             </thead>
             <tbody>
-                <ListItem />
+                {notes.map(note => (
+                    <ListItem key={note.id} note={note} setNotes={setNotes}/>
+                ))}
             </tbody>
         </table>
     );

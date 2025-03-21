@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Grade } from "./Grade";
-
 import "./GradesInput.css";
 import { TranslateText } from "../lang/TranslateText";
+import { withSound } from "../sound/withSound"; // Import the HOC
 
-// just a mock - use props/state whatever :)
-const grades = [12, 2, 3, 4, 5];
+interface GradesInputProps {
+    onGradesChange: (grades: number[]) => void;
+}
 
-// todo: implement the logic of adding new grades and removal on click
-// validate so the value entered is >0.1 and <10. Numbers have to contain max two digits after coma
-// Just disable button if grade is invalid
-export const GradesInput: React.FC = () => {
+export const GradesInput: React.FC<GradesInputProps> = ({ onGradesChange }) => {
+    const [grades, setGrades] = useState<number[]>([]);
+    const [newGrade, setNewGrade] = useState<number | null>(null);
+
+    useEffect(() => {
+        onGradesChange(grades);
+    }, [grades, onGradesChange]);
+
     const onGradeRemove = (index: number) => () => {
-        console.log(">>>", "Remove grade on index", index);
+        setGrades(grades.filter((_, i) => i !== index));
     };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = parseFloat(event.target.value);
+        setNewGrade(value);
+    };
+
+    const isGradeValid = newGrade !== null && newGrade >= 0.1 && newGrade <= 10;
+
+    const addGrade = () => {
+        if (isGradeValid) {
+            setGrades([...grades, newGrade!]);
+            setNewGrade(null);
+        }
+    };
+
+    const AddGradeButtonWithSound = withSound(({ onClick }) => (
+        <button 
+            data-test="add-grade-button" 
+            disabled={!isGradeValid} 
+            onClick={onClick}
+        >
+            <TranslateText translationKey="form.button.addGrade" />
+        </button>
+    ));
 
     return (
         <div>
@@ -25,11 +54,12 @@ export const GradesInput: React.FC = () => {
                     type="number"
                     min={0.1}
                     max={10}
+                    step={0.01}
                     placeholder="10"
+                    onChange={handleInputChange}
+                    value={newGrade ?? ""}
                 />
-                <button data-test="add-grade-button">
-                    <TranslateText translationKey="form.button.addGrade" />
-                </button>
+                <AddGradeButtonWithSound soundType="positive" onClick={addGrade} />
             </div>
             <div className="grades-list">
                 {grades.map((grade, index) =>

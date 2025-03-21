@@ -1,16 +1,25 @@
 import React from "react";
 import { ItemActions } from "./ItemActions";
+import { Note } from "../types";
 
-export const ListItem: React.FC = () => {
-    // todo: pass item id here
-    const id = "item-id";
+interface ListItemProps {
+    note: Note; // The note object to render
+    setNotes: React.Dispatch<React.SetStateAction<Note[]>>; // The setter to update the notes state in the parent List
+}
+
+export const ListItem: React.FC<ListItemProps> = ({ note, setNotes }) => {
     return (
-        <tr data-test="list-item" data-id={id}>
-            <td data-test="list-item-city">Warsaw</td>
-            <td data-test="list-item-date">22/02/2022</td>
-            <td data-test="list-item-dish">Zurek</td>
-            <td data-test="list-item-grades">10, 7, 6.5, 8.3</td>
-            <td data-test="list-item-actions"><ItemActions /></td>
+        <tr data-test="list-item" data-id={note.id}>
+            <td data-test="list-item-city">{note.city}</td>
+            <td data-test="list-item-date">{note.date}</td>
+            <td data-test="list-item-dish">{note.favouriteDish.name}</td>
+            <td data-test="list-item-grades">{note.grades.join(", ")}</td>
+            <td data-test="list-item-actions">
+                <ItemActions 
+                    noteId={note.id}  // Pass the note ID to ItemActions
+                    setNotes={setNotes}  // Pass the setter function to directly modify the parent state
+                />
+            </td>
         </tr>
     );
 };
