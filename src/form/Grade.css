@@ -1,9 +1,0 @@
-.grade {
-    min-width: 3.7rem;
-    padding: 0 1rem;
-    margin: 0 0.25rem 0.25rem;
-}
-
-.grade:first-child {
-    margin-left: 0;
-}

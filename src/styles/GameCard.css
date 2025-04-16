@@ -1,0 +1,51 @@
+.game-card {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-card-image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.game-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-card-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.game-card-released,
+.game-card-rating {
+    font-size: 0.875rem;
+    color: #6b7280; /* Tailwind's gray-600 */
+}
+
+.game-card-button {
+    margin-top: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #e5e7eb; /* Tailwind's gray-200 */
+    cursor: pointer;
+}
+
+.game-card-button.favorite {
+    background-color: #ef4444; /* Tailwind's red-500 */
+    color: white;
+}

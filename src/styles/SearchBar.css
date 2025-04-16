@@ -1,0 +1,20 @@
+.search-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.search-bar-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+    border-radius: 4px;
+}
+
+.search-bar-button {
+    background-color: #2563eb; /* Tailwind's blue-600 */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}

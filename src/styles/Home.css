@@ -1,0 +1,39 @@
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.sort-by select {
+    padding: 8px;
+    border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.reverse-order-button {
+    padding: 8px 16px;
+    border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+    border-radius: 4px;
+    background-color: #f3f4f6; /* Tailwind's gray-100 */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.reverse-order-button:hover {
+    background-color: #e5e7eb; /* Tailwind's gray-200 */
+}
+
+.reverse-order-button:active {
+    background-color: #d1d5db; /* Tailwind's gray-300 */
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    justify-content: center;
+    margin-top: 16px;
+}
