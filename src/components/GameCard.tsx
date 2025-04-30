@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Game } from "../types/game";
 import "../styles/GameCard.css";
 
@@ -9,9 +10,15 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game, isFavorite, onToggleFavorite }) => {
+    const navigate = useNavigate();
+
+    const handleImageClick = () => {
+        navigate(`/game/${game.id}`);
+    };
+
     return (
         <div className="game-card">
-            <div className="game-card-image">
+            <div className="game-card-image" onClick={handleImageClick}>
                 <img src={game.background_image} alt={game.name} />
             </div>
             <h3 className="game-card-title">{game.name}</h3>
