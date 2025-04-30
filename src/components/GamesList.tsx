@@ -43,7 +43,7 @@ const GamesList: React.FC<Props> = ({ favorites, onToggleFavorite }) => {
                     onClick={() => setIsReversed((prev) => !prev)}
                     className="p-2 border rounded bg-gray-200 hover:bg-gray-300"
                 >
-                    {isReversed ? "Normal Order" : "Reverse Order"}
+                    {isReversed ? "Reverse Order" : "Normal Order"}
                 </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
