@@ -78,6 +78,7 @@ const GameCard: React.FC<Props> = ({
     return (
         <div className="game-card">
             <div className="game-card-image" onClick={handleImageClick}>
+            <div className="game-card-image" onClick={handleImageClick}>
                 <img src={game.background_image} alt={game.name} />
             </div>
             <h3 className="game-card-title">{game.name}</h3>

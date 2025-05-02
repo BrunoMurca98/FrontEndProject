@@ -10,6 +10,12 @@ import SignUpPage from "./pages/SingUpPage";
 import GamePage from "./pages/GamePage";
 import NavBar from "./components/NavBar";
 import { Game } from "./types/game";
+import FavoritesPage from "./pages/FavoritesPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SingUpPage";
+import GamePage from "./pages/GamePage";
+import NavBar from "./components/NavBar";
+import { Game } from "./types/game";
 
 const App: React.FC = () => {
     const [favorites, setFavorites] = useState<Game[]>([]);

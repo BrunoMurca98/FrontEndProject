@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import React, { useState } from "react";
 import { Game } from "../types/game";
 import GameCard from "./GameCard";
+import GameCard from "./GameCard";
 import "../styles/Favorites.css";
+import "../styles/Home.css";
 import "../styles/Home.css";
 
 interface Props {
