@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import GameCard from "../components/GameCard";
-import Favorites from "../components/Favorites";
 import { Game } from "../types/game";
 import { searchGames } from "../utils/api";
 import "../styles/Home.css";
 
-const Home: React.FC = () => {
+interface Props {
+    favorites: Game[];
+    onToggleFavorite: (game: Game) => void;
+}
+
+const Home: React.FC<Props> = ({ favorites, onToggleFavorite }) => {
     const [query, setQuery] = useState("");
     const [games, setGames] = useState<Game[]>([]);
-    const [favorites, setFavorites] = useState<Game[]>([]);
     const [sortType, setSortType] = useState<"date" | "rating" | "alphabetical">("date");
     const [isReversed, setIsReversed] = useState(false);
 
@@ -17,14 +20,6 @@ const Home: React.FC = () => {
         setQuery(term);
         const results = await searchGames(term);
         setGames(results);
-    };
-
-    const toggleFavorite = (game: Game) => {
-        setFavorites((prev) =>
-            prev.find((g) => g.id === game.id)
-                ? prev.filter((g) => g.id !== game.id)
-                : [...prev, game]
-        );
     };
 
     const sortedGames = [...games].sort((a, b) => {
@@ -57,9 +52,9 @@ const Home: React.FC = () => {
                 </div>
                 <button
                     onClick={() => setIsReversed((prev) => !prev)}
-                    className="reverse-order-button"
+                    className={`reverse-order-button ${isReversed ? "reverse" : ""}`}
                 >
-                    {isReversed ? "Normal Order" : "Reverse Order"}
+                    {isReversed ? "Reverse Order" : "Normal Order"}
                 </button>
             </div>
             <div className="games-grid">
@@ -68,11 +63,10 @@ const Home: React.FC = () => {
                         key={game.id}
                         game={game}
                         isFavorite={favorites.some((f) => f.id === game.id)}
-                        onToggleFavorite={toggleFavorite}
+                        onToggleFavorite={onToggleFavorite}
                     />
                 ))}
             </div>
-            <Favorites favorites={favorites} onToggleFavorite={toggleFavorite} />
         </div>
     );
 };
