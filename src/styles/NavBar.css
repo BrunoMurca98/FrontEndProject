@@ -1,0 +1,59 @@
+.navbar {
+    background-color: #222831; /* Dark background */
+    padding: 16px;
+    display: flex;
+    justify-content: space-between; /* Ensure space between items */
+    border-bottom: 4px solid #ffcc00; /* Yellow border */
+}
+
+.navbar-list {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure the list spans the full width */
+}
+
+.navbar-item {
+    font-family: 'Press Start 2P', cursive; /* Retro font */
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+.navbar-item:last-child {
+    margin-left: auto; /* Push the logout button to the far right */
+}
+
+.navbar-link {
+    color: #f5f5f5; /* Light text color */
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.navbar-link:hover {
+    border-color: #ffcc00; /* Yellow border on hover */
+    background-color: #393e46; /* Dark background on hover */
+    color: #ffcc00; /* Yellow text on hover */
+}
+
+.logout-button {
+    padding: 8px 16px;
+    border: 2px solid #ffcc00; /* Yellow border */
+    background-color: #393e46; /* Dark button background */
+    color: #f5f5f5; /* Light text color */
+    font-family: 'Press Start 2P', cursive; /* Retro font */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #222831; /* Retro shadow effect */
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.logout-button:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+    background-color: #ffcc00; /* Yellow background on hover */
+    color: #222831; /* Dark text on hover */
+}
