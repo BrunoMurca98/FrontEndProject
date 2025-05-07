@@ -75,7 +75,6 @@ const Home: React.FC<Props> = ({ favorites, onToggleFavorite }) => {
                     className={`reverse-order-button ${isReversed ? "reverse" : ""}`}
                 >
                     {isReversed ? "Reverse Order" : "Normal Order"}
-                    {isReversed ? "Reverse Order" : "Normal Order"}
                 </button>
             </div>
             <div className="games-grid">
